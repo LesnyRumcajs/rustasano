@@ -1,4 +1,6 @@
 # Rustasano
+[![Build Status](https://travis-ci.com/LesnyRumcajs/rustasano.svg?branch=master)](https://travis-ci.com/LesnyRumcajs/rustasano)
+
 Matasano Crypto Challenge using Rust
 
 https://cryptopals.com
