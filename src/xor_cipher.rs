@@ -36,14 +36,3 @@ fn should_score_english_text() {
     let text = b"hello";
     assert_eq!(evaluate_english(text), 21);
 }
-
-#[test]
-fn should_pass_matasano3() {
-    let result = crack_single_byte_xor(
-        "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736",
-    );
-    assert_eq!(
-        String::from_utf8(result.0).unwrap(),
-        "Cooking MC's like a pound of bacon"
-    );
-}
