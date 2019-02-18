@@ -7,3 +7,5 @@ edition = "2018"
 [dependencies]
 hex = "0.3.2"
 base64 = "0.10.1"
+aes = "0.3.2"
+block-modes = "0.3.2"
