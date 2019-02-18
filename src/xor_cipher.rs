@@ -13,7 +13,7 @@ pub fn evaluate_english(data: &[u8]) -> i32 {
     })
 }
 
-pub fn crack_single_byte_xor(hex_encoded: &str) -> String {
+pub fn crack_single_byte_xor(hex_encoded: &str) -> (Vec<u8>, i32) {
     let bytes = hex::decode(hex_encoded).unwrap();
 
     let mut result: Vec<u8> = Vec::new();
@@ -28,7 +28,7 @@ pub fn crack_single_byte_xor(hex_encoded: &str) -> String {
         }
     }
 
-    String::from_utf8(result).unwrap()
+    (result, high_score)
 }
 
 #[test]
@@ -42,5 +42,8 @@ fn should_pass_matasano3() {
     let result = crack_single_byte_xor(
         "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736",
     );
-    assert_eq!(result, "Cooking MC's like a pound of bacon");
+    assert_eq!(
+        String::from_utf8(result.0).unwrap(),
+        "Cooking MC's like a pound of bacon"
+    );
 }
