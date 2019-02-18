@@ -17,7 +17,7 @@ pub fn single_byte_xor(data: &[u8], key: u8) -> Vec<u8> {
     iter::repeat(key).zip(data).map(|x| x.0 ^ x.1).collect()
 }
 
-pub fn single_byte_xor_detect(data: Vec<String>) -> Vec<u8> {
+pub fn single_byte_xor_detect(data: &[Vec<u8>]) -> Vec<u8> {
     data.iter()
         .map(|l| crack_single_byte_xor(&l))
         .max_by_key(|x| x.1)

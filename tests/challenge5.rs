@@ -1,6 +1,5 @@
 /// Implement repeating-key XOR
 /// https://cryptopals.com/sets/1/challenges/5
-
 use rustasano::repeating_key_xor::repeating_key_xor;
 
 #[test]

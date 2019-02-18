@@ -5,9 +5,12 @@ use rustasano::fixed_xor::single_byte_xor_detect;
 
 #[test]
 fn should_pass_matasano_4() {
-    let input = file_lines_to_vec("tests/res/4.txt");
+    let input: Vec<Vec<u8>> = file_lines_to_vec("tests/res/4.txt")
+        .iter()
+        .map(|line| hex::decode(line).unwrap())
+        .collect();
     assert_eq!(
         "Now that the party is jumping\n",
-        String::from_utf8(single_byte_xor_detect(input)).unwrap()
+        String::from_utf8(single_byte_xor_detect(&input)).unwrap()
     );
 }

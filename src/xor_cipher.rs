@@ -1,5 +1,4 @@
 use crate::fixed_xor::single_byte_xor;
-use std::str;
 
 pub fn evaluate_english(data: &[u8]) -> i32 {
     data.iter().fold(0, |acc, &ch| {
@@ -13,11 +12,10 @@ pub fn evaluate_english(data: &[u8]) -> i32 {
     })
 }
 
-pub fn crack_single_byte_xor(hex_encoded: &str) -> (Vec<u8>, i32) {
-    let bytes = hex::decode(hex_encoded).unwrap();
-
+pub fn crack_single_byte_xor(bytes: &[u8]) -> (Vec<u8>, i32, u8) {
     let mut result: Vec<u8> = Vec::new();
     let mut high_score = 0;
+    let mut key = 0x00;
 
     for candidate in 0x00..0xFF {
         let plaintext = single_byte_xor(&bytes, candidate);
@@ -25,10 +23,11 @@ pub fn crack_single_byte_xor(hex_encoded: &str) -> (Vec<u8>, i32) {
         if score > high_score {
             result = plaintext;
             high_score = score;
+            key = candidate;
         }
     }
 
-    (result, high_score)
+    (result, high_score, key)
 }
 
 #[test]
