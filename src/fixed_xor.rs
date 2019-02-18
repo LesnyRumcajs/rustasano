@@ -27,7 +27,6 @@ pub fn single_byte_xor_detect(data: &[Vec<u8>]) -> Vec<u8> {
 
 #[cfg(test)]
 mod tests {
-    use crate::file_utils::file_lines_to_vec;
     use crate::fixed_xor::*;
 
     #[test]
