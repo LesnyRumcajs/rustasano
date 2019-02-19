@@ -1,6 +1,5 @@
 /// AES in ECB mode
 /// https://cryptopals.com/sets/1/challenges/7
-
 use rustasano::aes_crypt::aes_ecb_decrypt;
 use std::fs;
 
