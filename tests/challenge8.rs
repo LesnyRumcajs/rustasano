@@ -3,6 +3,7 @@
 use rustasano::crypto_utils::count_same_blocks;
 use rustasano::file_utils::file_lines_to_vec;
 
+#[test]
 fn should_pass_matasano8() {
     let ciphertexts = file_lines_to_vec("tests/res/8.txt");
 

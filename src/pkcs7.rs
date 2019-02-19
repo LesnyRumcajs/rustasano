@@ -4,7 +4,7 @@ pub trait Pkcs7 {
 
 impl Pkcs7 for Vec<u8> {
     fn apply_pkcs7(mut self, block_size: usize) -> Self {
-        let pkcs7_num = match self.len() % block_size {
+        let pkcs7_num = match block_size - self.len() % block_size {
             0 => block_size,
             x => x,
         };
