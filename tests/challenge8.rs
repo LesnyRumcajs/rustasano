@@ -1,6 +1,5 @@
 /// Detect AES in ECB mode
 /// https://cryptopals.com/sets/1/challenges/8
-
 use rustasano::crypto_utils::count_same_blocks;
 use rustasano::file_utils::file_lines_to_vec;
 
