@@ -1,5 +1,6 @@
 pub mod aes_crypt;
 pub mod crypto_utils;
+pub mod ecb_cbc_oracle;
 pub mod file_utils;
 pub mod fixed_xor;
 pub mod hex_utils;

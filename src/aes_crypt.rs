@@ -16,6 +16,11 @@ pub fn aes_ecb_decrypt(ciphertext: &[u8], key: &[u8]) -> Vec<u8> {
     cipher.decrypt_vec(&ciphertext).unwrap()
 }
 
+pub fn aes_ecb_encrypt(plaintext: &[u8], key: &[u8]) -> Vec<u8> {
+    let cipher = Aes128Ecb::new_var(key, Default::default()).unwrap();
+    cipher.encrypt_vec(&plaintext)
+}
+
 pub fn aes_cbc_encrypt(
     plaintext: &[u8],
     key: &[u8; AES_BLOCK_SIZE],
@@ -71,7 +76,18 @@ fn create_key_always_different() {
 }
 
 #[test]
-fn encrypt_decrypt_test() {
+fn encrypt_decrypt_ebc_test() {
+    let key = b"YELLOW SUBMARINE";
+
+    let plaintext = b"Test123Test123Test123Test123Test123Test123";
+    let ciphertext = aes_ecb_encrypt(plaintext, key);
+
+    let result_plaintext = aes_ecb_decrypt(&ciphertext, key);
+    assert_eq!(result_plaintext[..], plaintext[..]);
+}
+
+#[test]
+fn encrypt_decrypt_cbc_test() {
     let key = b"YELLOW SUBMARINE";
     let iv = [0; AES_BLOCK_SIZE];
 
