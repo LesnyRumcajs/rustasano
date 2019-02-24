@@ -1,4 +1,5 @@
 pub mod aes_crypt;
+pub mod byte_at_a_time_decrypt;
 pub mod crypto_utils;
 pub mod ecb_cbc_oracle;
 pub mod file_utils;
