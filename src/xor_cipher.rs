@@ -33,5 +33,11 @@ pub fn crack_single_byte_xor(bytes: &[u8]) -> (Vec<u8>, i32, u8) {
 #[test]
 fn should_score_english_text() {
     let text = b"hello";
-    assert_eq!(evaluate_english(text), 21);
+    assert_eq!(evaluate_english(text) > 0, true);
+}
+
+#[test]
+fn should_punish_binary_text() {
+    let text = [0x00, 0x01, 0xFF];
+    assert_eq!(evaluate_english(&text) < 0, true);
 }
