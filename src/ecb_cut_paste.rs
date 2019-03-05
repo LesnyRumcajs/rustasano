@@ -1,17 +1,20 @@
 use std::collections::BTreeMap;
 
-fn parse_kv(data: &str) -> BTreeMap<String, String> {
+fn parse_kv(data: &str) -> Option<BTreeMap<String, String>> {
     data.split('&')
         .map(|kv| kv.split('='))
-        .map(|mut kv| (kv.next().unwrap().into(), kv.next().unwrap().into()))
+        .map(|mut kv| Some((kv.next()?.into(), kv.next()?.into())))
         .collect()
 }
 
 #[test]
 fn parse_kv_test() {
-    let result = parse_kv("test1=1&test2=2");
-    assert_eq!(result["test1"], "1");
-    assert_eq!(result["test2"], "2");
+    let good_result = parse_kv("test1=1&test2=2").unwrap();
+    assert_eq!(good_result["test1"], "1");
+    assert_eq!(good_result["test2"], "2");
+
+    let bad_result = parse_kv("test1=1&test2");
+    assert_eq!(bad_result, None);
 }
 
 fn escape_nasty_chars(data: &str) -> String {
