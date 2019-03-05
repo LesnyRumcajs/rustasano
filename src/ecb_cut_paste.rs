@@ -18,13 +18,13 @@ fn parse_kv_test() {
 }
 
 fn escape_nasty_chars(data: &str) -> String {
-    data.chars().map(|ch| {
-        match ch {
+    data.chars()
+        .map(|ch| match ch {
             '&' => "%26".to_string(),
             '=' => "%3D".to_string(),
-            _ => ch.to_string()
-        }
-    }).collect()
+            _ => ch.to_string(),
+        })
+        .collect()
 }
 
 #[test]
@@ -40,10 +40,16 @@ fn profile_for(mail: &str) -> String {
 
 #[test]
 fn profile_for_good_input() {
-    assert_eq!(profile_for("foo@bar.com"), "email=foo@bar.com&uid=10&role=user");
+    assert_eq!(
+        profile_for("foo@bar.com"),
+        "email=foo@bar.com&uid=10&role=user"
+    );
 }
 
 #[test]
 fn profile_for_nasty_input() {
-    assert_eq!(profile_for("foo@bar.com&role=admin"), "email=foo@bar.com%26role%3Dadmin&uid=10&role=user");
+    assert_eq!(
+        profile_for("foo@bar.com&role=admin"),
+        "email=foo@bar.com%26role%3Dadmin&uid=10&role=user"
+    );
 }
