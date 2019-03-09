@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-fn parse_kv(data: &str) -> Option<BTreeMap<String, String>> {
+pub fn parse_kv(data: &str) -> Option<BTreeMap<String, String>> {
     data.split('&')
         .map(|kv| kv.split('='))
         .map(|mut kv| Some((kv.next()?.into(), kv.next()?.into())))
@@ -34,7 +34,7 @@ fn escape_nasty_chars_test() {
     assert_eq!(escape_nasty_chars("can't touch this"), "can't touch this");
 }
 
-fn profile_for(mail: &str) -> String {
+pub fn profile_for(mail: &str) -> String {
     format!("email={}&uid=10&role=user", escape_nasty_chars(mail))
 }
 

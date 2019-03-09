@@ -9,7 +9,7 @@ use crate::pkcs7::Pkcs7 as pkcs7_padding;
 type Aes128Ecb = Ecb<Aes128, Pkcs7>;
 type Aes128EcbZero = Ecb<Aes128, ZeroPadding>;
 
-const AES_BLOCK_SIZE: usize = 16;
+pub const AES_BLOCK_SIZE: usize = 16;
 
 pub fn aes_ecb_decrypt(ciphertext: &[u8], key: &[u8]) -> Vec<u8> {
     let cipher = Aes128Ecb::new_var(key, Default::default()).unwrap();
